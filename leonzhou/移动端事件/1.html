@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;padding:0;
+    }
+    #div1{
+        width: 100%;
+        height: 100px;
+        background:red;
+        position:absolute;
+        left:0;
+        top:0;
+        opacity:.5;
+        transition: all ease .5s ;
+    }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+window.onload = function(){
+    let div1 = document.getElementById('div1')
+    var disx = 0;
+    var movex = 0;
+    div1.addEventListener('touchstart', function(e){
+        var aa = e.changedTouches[0]
+        disx = Math.floor(aa.pageX)
+        console.log(disx)
+    },false)
+    div1.addEventListener('touchmove', function(e){
+        var aa = e.changedTouches[0]
+        movex = Math.floor(aa.pageX)
+    },false)
+    div1.addEventListener('touchend', function(e){
+        console.log(disx,movex)
+        this.style.left = movex - disx + 'px'
+    },false)
+    document.addEventListener('touchstart',function(e){
+        e.preventDefault();
+    },{ passive: false })
+}
+</script>
+</body>
+</html>
